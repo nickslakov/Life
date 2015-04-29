@@ -147,7 +147,7 @@ namespace Life
             }
         }
 
-        public void createShape(int shapeIndex, int[] location)
+        public void createShape(int shapeIndex, int[] location, int direction)
         {
             if (shapeIndex == 0)
                 createBlock(location);
@@ -164,9 +164,9 @@ namespace Life
             else if(shapeIndex == 6)
                 createBeacon(location);
             else if(shapeIndex == 7)
-                createGlider(location);
+                createGlider(location, direction);
             else
-                createLWSS(location);
+                createLWSS(location, direction);
         }
 
         private void createBlock(int[] location)
@@ -271,12 +271,42 @@ namespace Life
             createBlock(new int[] { location[0] + 2, location[1] + 2 });
         }
 
-        private void createGlider(int[] location)
+        private void createGlider(int[] location, int direction)
+        {
+            if (direction == 0)
+                gliderUpRight(location);
+            else if (direction == 1)
+                gliderDownRight(location);
+            else if (direction == 2)
+                gliderDownLeft(location);
+            else
+                gliderUpLeft(location);
+        }
+
+        private void gliderUpRight(int[] location)
+        {
+            List<int[]> indices = new List<int[]>();
+
+            indices.Add(new int[] { location[0] + 1, location[1] });
+            indices.Add(new int[] { location[0], location[1] + 1 });
+            indices.Add(new int[] { location[0], location[1] + 2 });
+            indices.Add(new int[] { location[0] + 1, location[1] + 2 });
+            indices.Add(new int[] { location[0] + 2, location[1] + 2 });
+
+            coordsInBounds(indices);
+
+            foreach (int[] cell in indices)
+            {
+                cells[cell[0], cell[1]].State = true;
+            }  
+        }
+
+        private void gliderDownRight(int[] location)
         {
             createBlinker(new int[] { location[0] + 2, location[1] });
 
             List<int[]> indices = new List<int[]>();
-           
+
             indices.Add(new int[] { location[0], location[1] + 1 });
             indices.Add(new int[] { location[0] + 1, location[1] + 2 });
 
@@ -288,19 +318,14 @@ namespace Life
             }    
         }
 
-        private void createLWSS(int[] location)
+        private void gliderDownLeft(int[] location)
         {
+            createBlinker(new int[] { location[0] + 2, location[1] });
+
             List<int[]> indices = new List<int[]>();
 
-            indices.Add(location);
-            indices.Add(new int[] { location[0] + 1, location[1] });
-            indices.Add(new int[] { location[0] + 2, location[1] });
             indices.Add(new int[] { location[0], location[1] + 1 });
-            indices.Add(new int[] { location[0] + 3, location[1] + 1 });
-            indices.Add(new int[] { location[0], location[1] + 2 });
-            indices.Add(new int[] { location[0], location[1] + 3 });
-            indices.Add(new int[] { location[0] + 1, location[1] + 4 });
-            indices.Add(new int[] { location[0] + 3, location[1] + 4 });
+            indices.Add(new int[] { location[0] + 1, location[1] });
 
             coordsInBounds(indices);
 
@@ -310,7 +335,125 @@ namespace Life
             }    
         }
 
-        public void randomize()
+        private void gliderUpLeft(int[] location)
+        {
+            List<int[]> indices = new List<int[]>();
+
+            indices.Add(location);
+            indices.Add(new int[] { location[0] + 1, location[1] });
+            indices.Add(new int[] { location[0] + 2, location[1] });
+            indices.Add(new int[] { location[0], location[1] + 1 });
+            indices.Add(new int[] { location[0] + 1, location[1] + 2 });
+
+            coordsInBounds(indices);
+
+            foreach (int[] cell in indices)
+            {
+                cells[cell[0], cell[1]].State = true;
+            }  
+        }
+
+        private void createLWSS(int[] location, int direction)
+        {
+            if (direction == 0)
+                lwssUp(location);
+            else if (direction == 1)
+                lwssDown(location);
+            else if (direction == 2)
+                lwssRight(location);
+            else
+                lwssLeft(location);
+        }
+
+        private void lwssUp(int[] location)
+        {
+            List<int[]> indices = new List<int[]>();
+
+            indices.Add(location);
+            indices.Add(new int[] { location[0] + 1, location[1] });
+            indices.Add(new int[] { location[0] + 2, location[1] });
+            indices.Add(new int[] { location[0] + 3, location[1] });
+            indices.Add(new int[] { location[0], location[1] + 1 });
+            indices.Add(new int[] { location[0] + 4, location[1] + 1 });
+            indices.Add(new int[] { location[0], location[1] + 2 });
+            indices.Add(new int[] { location[0] + 1, location[1] + 3 });
+            indices.Add(new int[] { location[0] + 4, location[1] + 3 });
+
+            coordsInBounds(indices);
+
+            foreach (int[] cell in indices)
+            {
+                cells[cell[0], cell[1]].State = true;
+            } 
+        }
+
+        private void lwssDown(int[] location)
+        {
+            List<int[]> indices = new List<int[]>();
+
+            indices.Add(new int[] { location[0] + 1, location[1] }); 
+            indices.Add(new int[] { location[0] + 2, location[1] });
+            indices.Add(new int[] { location[0] + 3, location[1] });
+            indices.Add(new int[] { location[0] + 4, location[1] });
+            indices.Add(new int[] { location[0], location[1] + 1 });
+            indices.Add(new int[] { location[0] + 4, location[1] + 1 });
+            indices.Add(new int[] { location[0] + 4, location[1] + 2 });
+            indices.Add(new int[] { location[0], location[1] + 3 });
+            indices.Add(new int[] { location[0] + 3, location[1] + 3 });
+
+            coordsInBounds(indices);
+
+            foreach (int[] cell in indices)
+            {
+                cells[cell[0], cell[1]].State = true;
+            }
+        }
+
+        private void lwssRight(int[] location)
+        {
+            List<int[]> indices = new List<int[]>();
+
+            indices.Add(location);
+            indices.Add(new int[] { location[0] + 2, location[1] });
+            indices.Add(new int[] { location[0] + 3, location[1] + 1 });
+            indices.Add(new int[] { location[0] + 3, location[1] + 2 });
+            indices.Add(new int[] { location[0], location[1] + 3 });
+            indices.Add(new int[] { location[0] + 3, location[1] + 3 });
+            indices.Add(new int[] { location[0] + 1, location[1] + 4 });
+            indices.Add(new int[] { location[0] + 2, location[1] + 4 });
+            indices.Add(new int[] { location[0] + 3, location[1] + 4 });
+
+            coordsInBounds(indices);
+
+            foreach (int[] cell in indices)
+            {
+                cells[cell[0], cell[1]].State = true;
+            }  
+        }
+
+        private void lwssLeft(int[] location)
+        {
+            List<int[]> indices = new List<int[]>();
+
+            indices.Add(new int[] { location[0] + 1, location[1] });
+            indices.Add(new int[] { location[0] + 2, location[1] });
+            indices.Add(new int[] { location[0] + 3, location[1] });
+            indices.Add(new int[] { location[0], location[1] + 1 });
+            indices.Add(new int[] { location[0] + 3, location[1] + 1 });
+            indices.Add(new int[] { location[0] + 3, location[1] + 2 });
+            indices.Add(new int[] { location[0] + 3, location[1] + 3 });
+            indices.Add(new int[] { location[0], location[1] + 4 });
+            indices.Add(new int[] { location[0] + 2, location[1] + 4 });
+
+            coordsInBounds(indices);
+
+            foreach (int[] cell in indices)
+            {
+                cells[cell[0], cell[1]].State = true;
+            }  
+        }
+
+        public void randomize(int percentage)
         {
             Random rng = new Random();
 
@@ -318,7 +461,7 @@ namespace Life
             {
                 for (int i = 0; i < width / 2; i++)
                 {
-                    if (rng.Next(0, 100) > 90)
+                    if (rng.Next(100) >= 100 - percentage)
                         cells[j, i].State = true;
                     else
                         cells[j, i].State = false;

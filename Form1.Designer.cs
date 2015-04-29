@@ -45,6 +45,10 @@
             this.CustomShapeCoordinates = new System.Windows.Forms.TextBox();
             this.CreateCustomShape = new System.Windows.Forms.Button();
             this.Randomize = new System.Windows.Forms.Button();
+            this.LWSSDirection = new System.Windows.Forms.ListBox();
+            this.GliderDirection = new System.Windows.Forms.ListBox();
+            this.RandomChance = new System.Windows.Forms.TextBox();
+            this.ChanceExplanation = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,6 +123,7 @@
             this.Introduction.Location = new System.Drawing.Point(268, 12);
             this.Introduction.Multiline = true;
             this.Introduction.Name = "Introduction";
+            this.Introduction.ReadOnly = true;
             this.Introduction.Size = new System.Drawing.Size(270, 87);
             this.Introduction.TabIndex = 5;
             this.Introduction.Text = resources.GetString("Introduction.Text");
@@ -129,6 +134,7 @@
             this.Shapes.Location = new System.Drawing.Point(33, 105);
             this.Shapes.Multiline = true;
             this.Shapes.Name = "Shapes";
+            this.Shapes.ReadOnly = true;
             this.Shapes.Size = new System.Drawing.Size(237, 71);
             this.Shapes.TabIndex = 6;
             this.Shapes.Text = resources.GetString("Shapes.Text");
@@ -152,6 +158,7 @@
             this.ListBox.Size = new System.Drawing.Size(120, 95);
             this.ListBox.TabIndex = 7;
             this.ListBox.Visible = false;
+            this.ListBox.SelectedIndexChanged += new System.EventHandler(this.ListBox_SelectedIndexChanged);
             // 
             // ShapeCoordinates
             // 
@@ -178,6 +185,7 @@
             this.CustomShape.Location = new System.Drawing.Point(420, 138);
             this.CustomShape.Multiline = true;
             this.CustomShape.Name = "CustomShape";
+            this.CustomShape.ReadOnly = true;
             this.CustomShape.Size = new System.Drawing.Size(252, 38);
             this.CustomShape.TabIndex = 10;
             this.CustomShape.Text = "This is for the custom shapes. Enter any number\r\nof coordinates. Y first and then" +
@@ -215,11 +223,61 @@
             this.Randomize.Visible = false;
             this.Randomize.Click += new System.EventHandler(this.Randomize_Click);
             // 
+            // LWSSDirection
+            // 
+            this.LWSSDirection.FormattingEnabled = true;
+            this.LWSSDirection.Items.AddRange(new object[] {
+            "Up ",
+            "Down",
+            "Right",
+            "Left"});
+            this.LWSSDirection.Location = new System.Drawing.Point(281, 269);
+            this.LWSSDirection.Name = "LWSSDirection";
+            this.LWSSDirection.Size = new System.Drawing.Size(73, 17);
+            this.LWSSDirection.TabIndex = 14;
+            this.LWSSDirection.Visible = false;
+            // 
+            // GliderDirection
+            // 
+            this.GliderDirection.FormattingEnabled = true;
+            this.GliderDirection.Items.AddRange(new object[] {
+            "Up Right",
+            "Down Right",
+            "Down Left",
+            "Up Left"});
+            this.GliderDirection.Location = new System.Drawing.Point(281, 236);
+            this.GliderDirection.Name = "GliderDirection";
+            this.GliderDirection.Size = new System.Drawing.Size(73, 17);
+            this.GliderDirection.TabIndex = 15;
+            this.GliderDirection.Visible = false;
+            // 
+            // RandomChance
+            // 
+            this.RandomChance.Location = new System.Drawing.Point(693, 175);
+            this.RandomChance.Name = "RandomChance";
+            this.RandomChance.Size = new System.Drawing.Size(85, 20);
+            this.RandomChance.TabIndex = 16;
+            this.RandomChance.Visible = false;
+            // 
+            // ChanceExplanation
+            // 
+            this.ChanceExplanation.Location = new System.Drawing.Point(693, 149);
+            this.ChanceExplanation.Name = "ChanceExplanation";
+            this.ChanceExplanation.ReadOnly = true;
+            this.ChanceExplanation.Size = new System.Drawing.Size(88, 20);
+            this.ChanceExplanation.TabIndex = 17;
+            this.ChanceExplanation.Text = "Live Cell Chance";
+            this.ChanceExplanation.Visible = false;
+            // 
             // LifeBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(790, 436);
+            this.Controls.Add(this.ChanceExplanation);
+            this.Controls.Add(this.RandomChance);
+            this.Controls.Add(this.GliderDirection);
+            this.Controls.Add(this.LWSSDirection);
             this.Controls.Add(this.Randomize);
             this.Controls.Add(this.CreateCustomShape);
             this.Controls.Add(this.CustomShapeCoordinates);
@@ -259,6 +317,10 @@
         private System.Windows.Forms.TextBox CustomShapeCoordinates;
         private System.Windows.Forms.Button CreateCustomShape;
         private System.Windows.Forms.Button Randomize;
+        private System.Windows.Forms.ListBox LWSSDirection;
+        private System.Windows.Forms.ListBox GliderDirection;
+        private System.Windows.Forms.TextBox RandomChance;
+        private System.Windows.Forms.TextBox ChanceExplanation;
     }
 }
 

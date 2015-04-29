@@ -51,6 +51,8 @@ namespace Life
                 Reset.Visible = true;
                 AdvancedMenu.Visible = true;
                 Randomize.Visible = true;
+                RandomChance.Visible = true;
+                ChanceExplanation.Visible = true;
             }
             else
             {
@@ -58,6 +60,8 @@ namespace Life
                 Reset.Visible = false;
                 AdvancedMenu.Visible = false;
                 Randomize.Visible = false;
+                RandomChance.Visible = false;
+                ChanceExplanation.Visible = false;
             }
         }
 
@@ -93,18 +97,26 @@ namespace Life
                 CreateCustomShape.Visible = false;
                 CustomShapeCoordinates.Visible = false;
                 CustomShape.Visible = false;
+                LWSSDirection.Visible = false;
+                GliderDirection.Visible = false;
             }
         } 
 
         private void CreateShape_Click(object sender, EventArgs e)
         {
-            
+            int direction = 0;
+
             if (ShapeCoordinates.Lines.Count() == 2)
             {
                 int[] coords = new int[] { Convert.ToInt32(ShapeCoordinates.Lines[0]), Convert.ToInt32(ShapeCoordinates.Lines[1]) };
                 int shapeIndex = ListBox.SelectedIndex;
+                
+                if(shapeIndex == 7 )
+                    direction = GliderDirection.SelectedIndex;
+                else if(shapeIndex == 8)
+                    direction = LWSSDirection.SelectedIndex;
 
-                world.createShape(shapeIndex, coords);
+                world.createShape(shapeIndex, coords, direction);
             }
         }
 
@@ -134,8 +146,30 @@ namespace Life
 
         private void Randomize_Click(object sender, EventArgs e)
         {
-            world.randomize();
+            if(Convert.ToInt32(RandomChance.Lines[0]) <= 100 && Convert.ToInt32(RandomChance.Lines[0]) >= 0)
+                world.randomize(Convert.ToInt32(RandomChance.Lines[0]));
         }
+
+        private void ListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ListBox.SelectedIndex == 7)
+            {
+                LWSSDirection.Visible = false;
+                GliderDirection.Visible = true;
+            }
+            else if (ListBox.SelectedIndex == 8)
+            {
+                LWSSDirection.Visible = true;
+                GliderDirection.Visible = false;
+            }
+            else
+            {
+                LWSSDirection.Visible = false;
+                GliderDirection.Visible = false;
+            }
+        }
+
+       
 
 
     }
