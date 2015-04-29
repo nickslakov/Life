@@ -1,0 +1,9 @@
+c:\users\nick\documents\visual studio 2012\Projects\Life\bin\Debug\Life.exe.config
+c:\users\nick\documents\visual studio 2012\Projects\Life\bin\Debug\Life.exe
+c:\users\nick\documents\visual studio 2012\Projects\Life\bin\Debug\Life.pdb
+c:\users\nick\documents\visual studio 2012\Projects\Life\obj\Debug\Life.csprojResolveAssemblyReference.cache
+c:\users\nick\documents\visual studio 2012\Projects\Life\obj\Debug\Life.Properties.Resources.resources
+c:\users\nick\documents\visual studio 2012\Projects\Life\obj\Debug\Life.csproj.GenerateResource.Cache
+c:\users\nick\documents\visual studio 2012\Projects\Life\obj\Debug\Life.exe
+c:\users\nick\documents\visual studio 2012\Projects\Life\obj\Debug\Life.pdb
+c:\users\nick\documents\visual studio 2012\Projects\Life\obj\Debug\Life.LifeBox.resources
