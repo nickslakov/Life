@@ -309,5 +309,21 @@ namespace Life
                 cells[cell[0], cell[1]].State = true;
             }    
         }
+
+        public void randomize()
+        {
+            Random rng = new Random();
+
+            for (int j = 0; j < height / 2; j++)
+            {
+                for (int i = 0; i < width / 2; i++)
+                {
+                    if (rng.Next(0, 100) > 90)
+                        cells[j, i].State = true;
+                    else
+                        cells[j, i].State = false;
+                }
+            }
+        }
     }
 }

@@ -44,6 +44,7 @@
             this.CustomShape = new System.Windows.Forms.TextBox();
             this.CustomShapeCoordinates = new System.Windows.Forms.TextBox();
             this.CreateCustomShape = new System.Windows.Forms.Button();
+            this.Randomize = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +62,7 @@
             // timer
             // 
             this.timer.Enabled = true;
-            this.timer.Interval = 10;
+            this.timer.Interval = 50;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
             // PauseBox
@@ -146,7 +147,7 @@
             "Beacon",
             "Glider",
             "LWSS"});
-            this.ListBox.Location = new System.Drawing.Point(123, 211);
+            this.ListBox.Location = new System.Drawing.Point(125, 211);
             this.ListBox.Name = "ListBox";
             this.ListBox.Size = new System.Drawing.Size(120, 95);
             this.ListBox.TabIndex = 7;
@@ -203,11 +204,23 @@
             this.CreateCustomShape.Visible = false;
             this.CreateCustomShape.Click += new System.EventHandler(this.CreateCustomShape_Click);
             // 
+            // Randomize
+            // 
+            this.Randomize.Location = new System.Drawing.Point(703, 120);
+            this.Randomize.Name = "Randomize";
+            this.Randomize.Size = new System.Drawing.Size(75, 23);
+            this.Randomize.TabIndex = 13;
+            this.Randomize.Text = "Randomize";
+            this.Randomize.UseVisualStyleBackColor = true;
+            this.Randomize.Visible = false;
+            this.Randomize.Click += new System.EventHandler(this.Randomize_Click);
+            // 
             // LifeBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(790, 436);
+            this.Controls.Add(this.Randomize);
             this.Controls.Add(this.CreateCustomShape);
             this.Controls.Add(this.CustomShapeCoordinates);
             this.Controls.Add(this.CustomShape);
@@ -245,6 +258,7 @@
         private System.Windows.Forms.TextBox CustomShape;
         private System.Windows.Forms.TextBox CustomShapeCoordinates;
         private System.Windows.Forms.Button CreateCustomShape;
+        private System.Windows.Forms.Button Randomize;
     }
 }
 

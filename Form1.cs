@@ -50,12 +50,14 @@ namespace Life
                 PauseBox.Visible = true;
                 Reset.Visible = true;
                 AdvancedMenu.Visible = true;
+                Randomize.Visible = true;
             }
             else
             {
                 PauseBox.Visible = false;
                 Reset.Visible = false;
                 AdvancedMenu.Visible = false;
+                Randomize.Visible = false;
             }
         }
 
@@ -128,6 +130,11 @@ namespace Life
                     world.spawn(coord[0], coord[1]);
                 }
             }
+        }
+
+        private void Randomize_Click(object sender, EventArgs e)
+        {
+            world.randomize();
         }
 
 
