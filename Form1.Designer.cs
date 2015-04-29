@@ -119,7 +119,7 @@
             this.Introduction.Location = new System.Drawing.Point(268, 12);
             this.Introduction.Multiline = true;
             this.Introduction.Name = "Introduction";
-            this.Introduction.Size = new System.Drawing.Size(270, 79);
+            this.Introduction.Size = new System.Drawing.Size(270, 87);
             this.Introduction.TabIndex = 5;
             this.Introduction.Text = resources.GetString("Introduction.Text");
             this.Introduction.Visible = false;

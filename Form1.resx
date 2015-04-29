@@ -125,7 +125,8 @@
 custom shapes or pre-existing shapes. The width of the
 screen is 395 and the height is 218. The origin is in the 
 top left. Y increases from top to bottom. X increases 
-from left to right. </value>
+from left to right. Also! You can click to spawn a cell in 
+that point.</value>
   </data>
   <data name="Shapes.Text" xml:space="preserve">
     <value>These are the pre-existing shapes.
